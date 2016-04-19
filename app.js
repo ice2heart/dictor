@@ -1,7 +1,18 @@
 const parse = require('./parser.js');
 const fs = require('fs');
-var util = require('util');
+const util = require('util');
 const assert = require('assert');
+const tts = require('./lib/tts.js');
+
+
+tts({
+	text: '10 красный',
+	file: 'hello.mp3'
+	}, function(){
+		console.log('done');
+	}
+);
+
 
 function integerDivision(x, y) {
     return x / y >> 0
