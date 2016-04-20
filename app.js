@@ -5,13 +5,13 @@ const assert = require('assert');
 const tts = require('./lib/tts.js');
 
 
-tts({
+/*tts({
 	text: '10 красный',
 	file: 'hello.mp3'
 	}, function(){
 		console.log('done');
 	}
-);
+);*/
 
 
 function integerDivision(x, y) {
@@ -84,6 +84,23 @@ fs.readFile('test.jbb', 'utf8', function(err, contents) {
         }
     });
     outList.shift();
-    console.log(outList);
+    const cutList = outList.reduce((total, item) => {
+        var contain = false;
+        total.forEach((i)=>{
+            if (i[0] == item[0] && i[1] == item[1]){
+                contain = true;
+            }
+        });
+        if (!contain){
+            total.push(item);
+        }
+        return total;
+    }, []);
+    const color = {6:'Красный', 16:'Черный'};
+    const colorList = cutList.reduce((total, item) =>{
+        total.push([color[item[0]], item[1]]);
+        return total;
+    }, []);
+    console.log(outList, colorList);
 
 });
